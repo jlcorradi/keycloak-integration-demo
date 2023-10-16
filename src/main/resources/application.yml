@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+
+spring:
+  application:
+    name: demo-api
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            clientName: demo-api
+            client-id: ${spring.application.name}
+            client-secret: bHJZF6g1bYdXtT6iHF8IoawgVSpG7a8k
+            scope: openid,profile,email,offline_access
+            authorizationGrantType: authorization_code
+            redirect-uri: http://localhost:5173/auth-callback
+
+#            client-name: Your Client Name
+#            client-authentication-method: basic
+#            authorization-grant-type: implicit  # Set the grant type to "implicit"
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8080/realms/test-realm/protocol/openid-connect/auth
+            token-uri: http://localhost:8080/realms/test-realm/protocol/openid-connect/token
+            user-info-uri: http://localhost:8080/realms/test-realm/protocol/openid-connect/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: http://localhost:8080/realms/test-realm/protocol/openid-connect/certs
+
+
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/test-realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
