@@ -17,3 +17,5 @@ docker run -d -p 8080:8080 \
   -e KEYCLOAK_ADMIN_PASSWORD=admin \
   quay.io/keycloak/keycloak:22.0.4 start-dev
 ```
+## Complementary UI project
+A React project that demonstrates the exchange of the Authorization code with a jwt token can be found [Here](https://github.com/jlcorradi/keycloak-integration-demo-ui). 
